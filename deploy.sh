@@ -12,6 +12,7 @@ fi
 # Error out if $GH_TOKEN is empty or unset
 : ${GH_TOKEN:?"GH_TOKEN needs to be uploaded via travis-encrypt"}
 
+echo $GH_TOKEN | md5sum
 cd $HOME
 git clone --branch=gh-pages "https://${GH_TOKEN}@github.com/euanh/deploy-test" out 
 set -x
