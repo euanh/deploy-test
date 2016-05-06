@@ -1,0 +1,7 @@
+language: generic
+sudo: required
+script: 
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && ./deploy.sh
+env:
+  global:
+    - secure: jNkLhegrNN2Iyj1MTj7ycImvkngoegYV0tIXuw5i4MU2ylk7k9aZhkmsx8sVQGBjXlkmq3kjeY901neGOXHrC+g1HWxLPQVFOxsa0LAyFPozqIQeifaynGx7+1U4fM/ZIH2YRqU910HLgsrnygEQhNq25f1BBD2olNuJfYZihiV5hzJz1swTtqVYsHp40UpBFckTwdZ+yNK8GWr/dLwaJOYeRGNkbhMgNKnW32uCn2+yuJCoq7IDUzNoT5l5JGjm5MOIT3EsEn/taIXDdRneoRg77D8Cl+0tz2dQe+b00cugA+ScJpAfaRdWp+iVmh/TWKOlOsV/f6pVV2u9eA9n/Z3Q96VOKfGm2vCsUc6JARhJ647TJtb1DpmA2KlTSmfnB8Mrrxupg/l5dbXR/Le2jkCBQBZntvr9M93I2Jk6MJEi+fUunVty1GXWncv6u6uL+dc5LtSFqXFAQClGrpcqCfTfsGamcxzzvJt29XxfEXMIAMqxfIZKkoE4cmENDeqTvYpWLDida5Z+gmdKrmOyDXnvjD936fsZlXyxf9GCo5oOp2HjyjbIWyHvGs8Hw2oWhUzvz7TpEmtwrulYC3opcZniN3ppAQ9hI7HR3cx8WfMpRjF1akCrrCdfqo3pQGZDPe+u/5QSbpe1dJfPBqsswj/mKabS9dheAwvqJrY6UvA=
