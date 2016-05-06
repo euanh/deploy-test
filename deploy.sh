@@ -12,29 +12,28 @@ fi
 # Error out if $GH_TOKEN is empty or unset
 : ${GH_TOKEN:?"GH_TOKEN needs to be uploaded via travis-encrypt"}
 
+# Clone the destination repository into $HOME/out without echoing the token
 GH_TOKEN_MD5=$(echo $GH_TOKEN | md5sum)
 echo Token MD5: $GH_TOKEN_MD5
 cd $HOME
 git clone --branch=gh-pages "https://${GH_TOKEN}@github.com/euanh/deploy-test" out | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 set -x
 echo Cloned
-pwd
-ls
-ls out
+
+# Commit changes in the destination branch
 cd out
 ls
 git branch
 git config user.name "travis"
 git config user.email "travis@travis-ci.org"
-date > commits
+date >> commits
 git add commits
 git commit -m "test commit"
 git log --oneline -10
 ls
 git show
-# --quiet and &> /dev/null seem to make push silently fail (succesfully!) if the token is rubbish
+
+# Push changes back to GitHub, redacting the token
 set +x
 git push origin gh-pages 2>&1 | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 set -x
-echo $?
-echo Pushed
