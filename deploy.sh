@@ -14,7 +14,7 @@ fi
 
 echo $GH_TOKEN | md5sum
 cd $HOME
-git clone --branch=gh-pages "https://${GH_TOKEN}@github.com/euanh/deploy-test" out 
+git clone --branch=gh-pages "https://${GH_TOKEN}@github.com/euanh/deploy-test" out | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 set -x
 echo Cloned
 pwd
@@ -33,7 +33,7 @@ ls
 git show
 # --quiet and &> /dev/null seem to make push silently fail (succesfully!) if the token is rubbish
 set +x
-git push --quiet origin gh-pages &> /dev/null
+git push origin gh-pages 2>&1 | sed -e "s/$GH_TOKEN/!REDACTED!/g"
 set -x
 echo $?
 echo Pushed
